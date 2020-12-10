@@ -9,17 +9,29 @@ class Home extends Component{
         super()
 
         this.state={
-            news:JSON,
-            filtered:JSON
+            news:[{'a': 1}, {'b': 2}, {'c': 3}],
+            filtered:'Enter your Search String',
         }
     }
 
     filterNews(userinput){
-        const output =this.state.news.filter((data) =>{
-            return data.title.toLowerCase().indexOf(userinput.toLowerCase())>-1
+           this.state.news.map((data) => {
+            let key;
+            let output;
+            for(key in data){
+                if( key.toLowerCase().indexOf(userinput.toLowerCase())>-1){
+                    output = data[key]
+                    this.setState({filtered:output})
+                }
+            }
+            console.log(output)  
         })
-
-        this.setState({filtered:output})
+      
+        /*const output =this.state.news.filter((data) =>{
+          
+        })*/
+        //console.log(output)
+        //this.setState({filtered:output})
     }
 
 
